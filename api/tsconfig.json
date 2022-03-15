@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": "/",
+		"outDir":"prod",
+		"target":"ESNext",
+		"removeComments": true,
+		"module": "commonjs",
+		"strict": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node"
+	},
+	"include": ["*", "*.ts", "**.ts", "**/*"],
+	"exclude": ["node_modules"]
+}

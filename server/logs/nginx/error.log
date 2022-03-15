@@ -1,0 +1,59 @@
+2022/02/25 00:47:42 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:47:42 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:47:42 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:47:42 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:47:42 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:47:42 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:47:42 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:47:42 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:47:42 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:47:42 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:47:42 [emerg] 1#1: still could not bind()
+2022/02/25 00:48:37 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:48:37 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:48:37 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:48:37 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:48:37 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:48:37 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:48:37 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:48:37 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:48:37 [emerg] 1#1: bind() to 0.0.0.0:80 failed (98: Address in use)
+2022/02/25 00:48:37 [notice] 1#1: try again to bind() after 500ms
+2022/02/25 00:48:37 [emerg] 1#1: still could not bind()
+2022/02/25 00:49:41 [notice] 1#1: using the "epoll" event method
+2022/02/25 00:49:41 [notice] 1#1: nginx/1.21.5
+2022/02/25 00:49:41 [notice] 1#1: built by gcc 10.3.1 20211027 (Alpine 10.3.1_git20211027) 
+2022/02/25 00:49:41 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2022/02/25 00:49:41 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/02/25 00:49:41 [notice] 1#1: start worker processes
+2022/02/25 00:49:41 [notice] 1#1: start worker process 61
+2022/02/25 00:49:41 [notice] 1#1: start worker process 62
+2022/02/25 00:49:41 [notice] 1#1: start worker process 63
+2022/02/25 00:49:41 [notice] 1#1: start worker process 64
+2022/02/25 00:49:41 [notice] 1#1: start worker process 65
+2022/02/25 00:49:41 [notice] 1#1: start cache manager process 66
+2022/02/25 00:49:41 [notice] 1#1: start cache loader process 67
+2022/02/25 00:50:22 [notice] 1#1: signal 15 (SIGTERM) received, exiting
+2022/02/25 00:50:22 [notice] 62#62: exiting
+2022/02/25 00:50:22 [notice] 61#61: exiting
+2022/02/25 00:50:22 [notice] 65#65: exiting
+2022/02/25 00:50:22 [notice] 64#64: exiting
+2022/02/25 00:50:22 [notice] 63#63: exiting
+2022/02/25 00:50:22 [notice] 67#67: exiting
+2022/02/25 00:50:22 [notice] 66#66: exiting
+2022/02/25 00:50:22 [notice] 62#62: exit
+2022/02/25 00:50:22 [notice] 61#61: exit
+2022/02/25 00:50:22 [notice] 1#1: signal 17 (SIGCHLD) received from 67
+2022/02/25 00:50:22 [notice] 1#1: cache manager process 66 exited with code 0
+2022/02/25 00:50:22 [notice] 65#65: exit
+2022/02/25 00:50:22 [notice] 64#64: exit
+2022/02/25 00:50:22 [notice] 1#1: worker process 62 exited with code 0
+2022/02/25 00:50:22 [notice] 1#1: cache loader process 67 exited with code 0
+2022/02/25 00:50:22 [notice] 63#63: exit
+2022/02/25 00:50:22 [notice] 1#1: worker process 61 exited with code 0
+2022/02/25 00:50:22 [notice] 1#1: signal 29 (SIGIO) received
+2022/02/25 00:50:22 [notice] 1#1: signal 17 (SIGCHLD) received from 66
+2022/02/25 00:50:22 [notice] 1#1: worker process 64 exited with code 0
+2022/02/25 00:50:22 [notice] 1#1: worker process 65 exited with code 0
+2022/02/25 00:50:22 [notice] 1#1: worker process 63 exited with code 0
+2022/02/25 00:50:22 [notice] 1#1: exit

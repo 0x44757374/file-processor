@@ -1,0 +1,44 @@
+{
+	"name": "file-processor-api",
+	"version": "0.1.0",
+	"description": "File Processor, (nodejs) api server",
+	"main": "index.js",
+	"scripts": {
+		"dotfile": "export $(cat ../.dotfiles/.prod",
+		"serve": "export $(cat ../.env | xargs) && node prod/index.js",
+		"build": "tsc",
+		"start": "ts-node index.ts",
+		"dev": "export $(cat ../.env | xargs) && export $(local=true | xargs) && nodemon index.ts"
+	},
+	"author": "Dustin Sobrero",
+	"github": "https://github.com/0x44757374",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/compression": "^1.7.2",
+		"@types/connect-redis": "^0.0.18",
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/express-fileupload": "^1.2.2",
+		"@types/express-session": "^1.17.4",
+		"@types/node": "^17.0.21",
+		"@types/uuid": "^8.3.4",
+		"@types/ws": "^8.5.0",
+		"nodemon": "^2.0.15",
+		"ts-node": "^10.5.0",
+		"typescript": "^4.5.5"
+	},
+	"dependencies": {
+		"@types/dotenv": "^8.2.0",
+		"@types/redis": "^4.0.11",
+		"compression": "^1.7.4",
+		"connect-redis": "^6.1.1",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"express-fileupload": "^1.3.1",
+		"express-session": "^1.17.2",
+		"redis": "^4.0.4",
+		"uuid": "^8.3.2",
+		"ws": "^8.5.0"
+	}
+}

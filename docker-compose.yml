@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+  cache:
+    container_name: ${PROJECT_NAME}-cache
+    build: 
+      context: ./cache
+    image: ${PROJECT_NAME}-cache
+    labels:
+      - ${PROJECT_NAME}-cache
+    ports:
+      - ${CACHE_PORT}:${CACHE_PORT}
+    restart: always
+    environment:
+      CACHE_PORT: ${CACHE_PORT}
+      CACHE_PASS: ${CACHE_PASS}
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${CACHE_PASS} --port ${CACHE_PORT}
+    volumes: 
+      - cache:/data
+  server:
+    container_name: ${PROJECT_NAME}-server
+    build:
+      context: ./server
+    image: ${PROJECT_NAME}-server
+    ports:
+      - ${SERVER_HTTP_PORT}:${SERVER_HTTP_PORT}
+      - ${SERVER_HTTPS_PORT}:${SERVER_HTTPS_PORT}
+    networks:
+      - default
+    restart: always
+    volumes:
+      - ./server/logs/:/var/log/:rw
+      - ./server/nginx/http/:/etc/nginx/http.conf.d/:rw
+      - ./server/nginx/stream/:/etc/nginx/stream.conf.d/:rw
+      - ./server/nginx/modsec/:/etc/nginx/modsec/:ro
+      - ./server/nginx/owasp/crs-setup.conf:/usr/local/owasp-modsecurity-crs/crs-setup.conf:ro
+      - ./server/nginx/error_pages/:/var/www/error/:ro
+      - ./server/certbot/www:/var/www/certbot/:ro
+      - ./server/certbot/conf/:/etc/nginx/ssl/:ro
+    labels:
+      - ${PROJECT_NAME}-server
+    environment:
+      MODSEC: "${MODSEC}"
+      HTTPS: "${HTTPS}"
+      SERVER_HTTP_PORT: ${SERVER_HTTP_PORT}
+      SERVER_HTTPS_PORT: ${SERVER_HTTP_PORT}
+      API_HOST: "${API_HOST}"
+      APP_HOST: "${APP_HOST}"
+      CACHE_HOST: "${CACHE_HOST}"
+      DOMAIN: "${DOMAIN}"
+    command: /bin/sh -c "
+        if [ ${HTTPS} = 'off' ]; then export HTTPS_COMMENT='#'; else export HTTPS_COMMENT=''; fi && 
+        /usr/local/bin/envsubst '$${DOMAIN} $${SERVER_HTTP_PORT} $${SERVER_HTTPS_PORT}  $${MODSEC} $${HTTPS_COMMENT}' < /etc/nginx/http.conf.d/template.nginx.conf > /etc/nginx/http.conf.d/nginx.conf && 
+        /usr/local/bin/envsubst '$${API_HOST} $${CACHE_HOST}' < /etc/nginx/stream.conf.d/template.nginx.conf > /etc/nginx/stream.conf.d/nginx.conf && 
+        /etc/nginx/sbin/nginx -g 'daemon off;'"
+  certbot:
+    container_name: ${PROJECT_NAME}-server-certbot 
+    image: certbot/certbot
+    volumes:
+      - ./server/certbot/www/:/var/www/certbot/:rw
+      - ./server/certbot/conf/:/etc/letsencrypt/:rw
+  api:
+    container_name: ${PROJECT_NAME}-api
+    build:
+      context: ./api
+    image: ${PROJECT_NAME}-api
+    labels:
+      - ${PROJECT_NAME}-api
+    ports:
+      - ${API_PORT}:${API_PORT}
+    restart: always
+    environment:
+      API_PORT: ${API_PORT}
+      CACHE_HOST: ${PROJECT_NAME}-server
+      CACHE_PORT: ${CACHE_PORT}
+      CACHE_PASS: ${CACHE_PASS}
+  app:
+    container_name: ${PROJECT_NAME}-app
+    build:
+      context: ./app
+    image: ${PROJECT_NAME}-app
+    labels:
+      - ${PROJECT_NAME}-app
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    restart: always
+    environment:
+      APP_PORT: ${APP_PORT}
+      SERVER_HTTP_PORT: ${SERVER_HTTP_PORT}
+      SERVER_HTTPS_PORT: ${SERVER_HTTPS_PORT}
+      SERVER_HOST: ${SERVER_HOST}
+volumes:
+  cache:
+    driver: local
+networks:
+  default:
+    external: true
+    name: ${PROJECT_NAME}-network
